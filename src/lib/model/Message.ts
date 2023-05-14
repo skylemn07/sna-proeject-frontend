@@ -1,7 +1,7 @@
 export interface Message {
-	message: string;
+	message: string
 }
 
 export interface Hash {
-	hash: string;
+	hash: string
 }

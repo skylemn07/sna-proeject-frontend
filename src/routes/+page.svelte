@@ -1,33 +1,39 @@
 <script lang="ts">
-	import { Button, Group, Loader, Stack, Text, TextInput } from '@svelteuidev/core';
-	import { getMessageByHash, getMessageHash } from '../lib/api/Fetch.js';
+	import { Button, Group, Loader, Stack, Text, TextInput } from '@svelteuidev/core'
+	import { getMessageByHash, getMessageHash } from '../lib/api/Fetch.js'
 
-	let request = '';
-	let response = '';
-	let loading = false;
-	let messageMode = true;
+	let request = ''
+	let response = ''
+	let errorText = ''
+	let loading = false
+	let messageMode = true
 
 	function handleSubmit() {
-		loading = true;
+		if (!request) {
+			errorText = 'Field must be non empty'
+		} else {
+			loading = true
+		}
 	}
 
 	function handleModeChange() {
-		messageMode = !messageMode;
-		request = response;
-		response = '';
+		messageMode = !messageMode
+		request = response
+		response = ''
+		errorText = ''
 	}
 
 	async function handleRequest() {
 		if (messageMode) {
 			response = await getMessageHash(request).then((resp) => {
-				loading = false;
-				return resp;
-			});
+				loading = false
+				return resp
+			})
 		} else {
 			response = await getMessageByHash(request).then((resp) => {
-				loading = false;
-				return resp;
-			});
+				loading = false
+				return resp
+			})
 		}
 	}
 </script>
@@ -47,6 +53,10 @@
 					label={messageMode ? 'Message' : 'Hash'}
 					required
 					bind:value={request}
+					error={errorText}
+					on:click={() => {
+						errorText = ''
+					}}
 				/>
 				<Group>
 					{#if messageMode}
