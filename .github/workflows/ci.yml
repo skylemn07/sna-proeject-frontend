@@ -2,10 +2,11 @@ name: Run linting and testing
 
 on:
   push:
-    - '*'
-    - '*/*'
-    - '**'
-    - '!master'
+    branches:
+      - '*'
+      - '*/*'
+      - '**'
+      - '!master'
 permissions:
   contents: write
 
