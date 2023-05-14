@@ -1,1 +1,1 @@
-# sna-proeject-frontend
+# sna-project-frontend
