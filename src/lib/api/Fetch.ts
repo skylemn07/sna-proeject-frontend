@@ -12,7 +12,7 @@ async function handleResponse<T>(resp: Response): Promise<T> {
 }
 
 export async function getMessageHash(message: string): Promise<string> {
-	const url = ''
+	const url = 'http://slewiex.pythonanywhere.com?message=123'
 	const params = new URLSearchParams()
 	params.append('message', message)
 
@@ -27,7 +27,7 @@ export async function getMessageHash(message: string): Promise<string> {
 }
 
 export async function getMessageByHash(hash: string): Promise<string> {
-	const url = ''
+	const url = 'http://slewiex.pythonanywhere.com?message=123'
 	const params = new URLSearchParams()
 	params.append('hash', hash)
 
