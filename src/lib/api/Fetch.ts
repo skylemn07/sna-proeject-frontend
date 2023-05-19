@@ -12,7 +12,7 @@ async function handleResponse<T>(resp: Response): Promise<T> {
 }
 
 export async function getMessageHash(message: string): Promise<string> {
-	const url = 'http://slewiex.pythonanywhere.com'
+	const url = 'https://slewiex.pythonanywhere.com'
 	const params = new URLSearchParams()
 	params.append('message', message)
 
@@ -20,21 +20,23 @@ export async function getMessageHash(message: string): Promise<string> {
 		method: 'POST',
 		redirect: 'follow',
 		headers: {
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+            'Allow-Control-Allow-Origin': '*'
 		}
 	})
 	return (await handleResponse<Hash>(resp)).hash
 }
 
 export async function getMessageByHash(hash: string): Promise<string> {
-	const url = 'http://slewiex.pythonanywhere.com'
+	const url = 'https://slewiex.pythonanywhere.com'
 	const params = new URLSearchParams()
 	params.append('hash', hash)
 
 	const resp: Response = await fetch(buildUrl(url, params), {
 		redirect: 'follow',
 		headers: {
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+            'Allow-Control-Allow-Origin': '*'
 		}
 	})
 	return (await handleResponse<Message>(resp)).message
